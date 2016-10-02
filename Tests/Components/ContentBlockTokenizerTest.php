@@ -3,6 +3,7 @@
 namespace Tests\Components;
 
 
+use Components\BodyExtractor;
 use Components\ContentBlockTokenizer;
 use \PHPUnit_Framework_TestCase as BaseUnitTestCase;
 

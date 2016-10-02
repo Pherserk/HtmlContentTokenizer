@@ -9,9 +9,14 @@ class BodyExtractor
     {
         $bodies = [];
 
+        $htmlContent = preg_replace('/<!--.*?-->/ms', '', $htmlContent);
+
         $htmlContent = preg_replace('/<head[^>]*>(.*?)<\/head>/is', '', $htmlContent);
+        $htmlContent = preg_replace('/<form[^>]*>(.*?)<\/form>/is', '', $htmlContent);
         $htmlContent = preg_replace('/<script[^>]*>(.*?)<\/script>/is', '', $htmlContent);
+        $htmlContent = preg_replace('/<noscript[^>]*>(.*?)<\/noscript>/is', '', $htmlContent);
         $htmlContent = preg_replace('/<style[^>]*>(.*?)<\/style>/is', '', $htmlContent);
+        $htmlContent = preg_replace('/<iframe[^>]*>(.*?)<\/iframe>/is', '', $htmlContent);
 
         if (preg_match_all('/<body[^>]*>(.*?)<\/body>/is' , $htmlContent, $bodyContents) > 0) {
             foreach ($bodyContents[1] as $bodyContent) {
